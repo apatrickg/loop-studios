@@ -15,8 +15,6 @@ body{
     font-size: 15px;
     font-weight: 400;
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
 }
 
 body,
@@ -27,18 +25,23 @@ html{
 
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 h1,
 h2,
-h3,
-h4{
+h3{
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 300;
 }
 
-.overlay{
-    z-index: 99;
+button{
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    border: none;
 }
 
 /* Top */
@@ -54,68 +57,60 @@ h4{
 
 /* Navigation */
 .loop-nav{
-    overflow: hidden;
     width: 100%;
+    overflow: hidden;
 }
 
-.logo{
-    display: inline-block;
+.loop-nav ul{
+    list-style:none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
-.shifted{
-    float: right;
+.loop-nav ul li{
+    padding: 0em 0em 1em 0em;
+    font-size: 1rem;
 }
 
-.loop-nav a {
-    float: left;
-    display: block;
+.loop-nav ul li.nav-items{
+    height: 2em;
+    width: auto;
+    margin-right: 1.5em;
     text-align: center;
-    text-decoration: none;
-    margin-left: 2.3em;
-    color: var(--white);
+    /* Order last */
+    order: 2;
 }
 
-.loop-nav a:not(:last-child):hover::after{
+.loop-nav ul li.nav-items:hover::after{
     content: "";
-    display:block;
+    display: block;
     width:20px;
-    margin:0 auto;
-    border-bottom:3px solid var(--white);
+    margin: 0 auto;
+    padding-top: 2px;
+    border-bottom:2px solid var(--white);
 }
 
-/* Menu bars */
-.container {
-    display: inline-block;
-    cursor: pointer;
+.loop-nav ul li.logo{
+    flex: 1;
 }
 
-.bar1, .bar2, .bar3 {
-    width: 30px;
-    height: 5px;
-    background-color: var(--white);
-    margin: 6px 0;
-    transition: 0.4s;
+.loop-nav ul li a{
+    color: var(--white);
+    text-decoration: none;
 }
 
-/* Rotate first bar */
-.change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
-    transform: rotate(-45deg) translate(-9px, 6px) ;
-}
-  
-/* Fade out the second bar */
-.change .bar2 {
-    opacity: 0;
-}
-  
-/* Rotate last bar */
-.change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
-    transform: rotate(45deg) translate(-8px, -8px) ;
-}
-
-.loop-nav .icon{
+.js-menu{
+    background: none;
+    color: var(--white);
+    font-size: 2rem;
+    margin: 2em 2.5em 0em 2.5em;
     display: none;
+}
+
+.fixed{
+    position: fixed;
 }
 
 .loop-header{
@@ -124,11 +119,6 @@ h4{
     border: 2px solid var(--white);
     margin-top: 5.5em;
 }
-
-.fixed{
-    position: fixed;
-}
-
 
 .header-text{
     margin: auto;
@@ -150,6 +140,7 @@ h4{
     display: block;
 }
 
+/* Middle */
 .content-mid{
     display: flex;
     margin: 8em 9.5em 0em 9.5em;
@@ -159,7 +150,7 @@ h4{
 }
 
 .loop-left{
-    width: 60%;
+    width: 62%;
 }
 
 .loop-left img{
@@ -170,7 +161,7 @@ h4{
 
 .loop-right{
     position: absolute;
-    width: 52%;
+    width: 51%;
     height: 18rem;
     background-color: var(--white);
     right: 0;
@@ -181,15 +172,15 @@ h4{
     font-size: 2.3rem;
     text-transform: uppercase;
     width: 28rem;
-    margin: 3em 0em 0em auto;
-    color: var(--veryDarkGray);
+    margin: 3em 0em 0.25em auto;
+    color: var(--black);
 }
-
 
 
 .loop-right p{
     margin-left: auto;
     width: 28rem;
+    line-height: 1.6;
     color: var(--darkGray);
 }
 
@@ -204,25 +195,22 @@ h4{
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin: 0em 0em 3em 0em;
 }
 
-.loop-top h1{
+.loop-top h2{
     text-transform: uppercase;
     font-size: 2.3rem;
 }
 
 .loop-top .btn{
-    display: inline-block;
-    outline: none;
-    user-select: none;
-    border-color: var(--black);
+    border: 1px solid var(--veryDarkGray);
     width: 8rem;
     height: 2rem;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
-    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 4px;
+    font-family: 'Alata', sans-serif;
     background-color: var(--white);
-    cursor: pointer;
 }
 
 .loop-top .btn:hover{
@@ -249,13 +237,11 @@ h4{
 }
 
 .image-container:hover :not(h3){
-    cursor: pointer;
     opacity: 0.2;
 }
 
 .image-container:hover h3{
     color: var(--black);
-    cursor: pointer;
 }
 
 
@@ -265,20 +251,21 @@ h4{
     font-size: 1.8em;
     width: 60%;
     color: white;
-    bottom:0px;
+    bottom:20px;
     left: 35px;
     transition: color 1s ease;
 }
 
+/* Footer */
 .footer{
     background-color: var(--black);
     width: 100%;
     height: auto;
-    padding: 1em 9.5em 0em 9.5em;
+    padding: 1em 9.5em 1em 9.5em;
     margin-top: 4em;
     display: flex;
     justify-content: space-between;
-    height: 8rem;
+    height: 7rem;
 }
 
 .footer-left{
@@ -288,8 +275,13 @@ h4{
     justify-content: space-around;
 }
 
-.icons img{
-    margin-left: 1em;
+.icons{
+    display: flex;
+    margin-left: auto;
+}
+
+.icons a img{
+    padding-left: 1.6em;
 }
 
 .footer-right{
@@ -315,7 +307,7 @@ h4{
 }
 
 .copyright{
-    color: var(--veryDarkGray);
+    color: var(--darkGray);
 }
 
 /* Media Queries */
@@ -356,16 +348,35 @@ h4{
 
 
 @media screen and (max-width: 905px){
-    .loop-nav a:not(:last-child) {display: none;}
-    .loop-nav a.icon{
-        float: right;
-        display: block;
-        padding-top: 0.6em;
-        margin: 3.1em 5em 0em 0em;
+    .loop-nav ul li.nav-items{
+        width: 100%;
+        display: none;
+        text-align: left;
+        font-size: 1.2rem;
+        margin: 0 4em;
     }
 
-    .loop-nav a:not(:last-child):hover::after{
-        margin: auto 0;
+    .loop-nav ul li.nav-items.show{
+        display: block;
+        padding:  1em 0;
+        position: relative;
+        top: 120px;
+        text-transform: uppercase;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .loop-nav ul li.nav-items:hover::after{
+       display: none;
+    }
+
+    .loop-nav.change{
+        min-height: 100vh;
+        background-color: black;
+        align-items: flex-start;
+    }
+
+    .js-menu{
+        display: block;
     }
 
    .content-top{
@@ -418,6 +429,7 @@ h4{
 
    .loop-right h1{
        margin-left: 0;
+       margin-bottom: 0.25em;
    }
 
    .loop-right p{
@@ -426,42 +438,12 @@ h4{
    }
 
    .content-bottom{
-       margin: 4em 5em 0em 5em;
+       margin: 1em 5em 0em 5em;
    }
 
    .loop-grid{
        grid-template-columns: repeat(1,1fr);
    }
-
-}
-
-@media screen and (max-width:905px){
-    .loop-nav.responsive {
-        position: relative;
-        min-height: 100vh;
-        background-color: var(--black);
-    }
-    
-    .loop-nav.responsive .icon{
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    
-
-    .loop-nav.responsive a:not(:last-child){
-        float: none;
-        display: block;
-        text-align: center;
-        padding: 14px 0;
-        text-transform: uppercase;
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 1.2rem;
-    }
-
-    .shifted{
-        float: none;
-    }
 
     .loop-top .btn{
         display: none;
@@ -474,12 +456,16 @@ h4{
     .footer{
         flex-direction: column;
         align-items: center;
-        padding: 1em 5em 0em 5em;
+        padding: 2em 5em 2em 5em;
         height: auto;
     }
 
     .footer-left{
         align-items: center;
+    }
+
+    .footer-left img{
+        width: 96%;
     }
 
     .footer-nav{
@@ -490,13 +476,18 @@ h4{
         padding: 1em 0em 1em 0em;
     }
     
-    .icons img{
-        margin-left: 2em;
-        margin-bottom: 1em;
+    .icons {
+        display: block;
+        margin: auto;
+    }
+    
+    .icons a img{
+        padding-left: 0;
+        margin-right: 1.5em;
     }
 
     .copyright{
-        margin-bottom: 1em;
+        margin-top: 1em;
     }
 }
 
@@ -510,11 +501,19 @@ h4{
         top: 90px;
     }
 
+    .loop-nav ul li{
+        padding: 0;
+    }
+
     .loop-nav a.icon{
         float: right;
         display: block;
         padding-top: 0.6em;
         margin: 3em 2em 0em 0em;
+    }
+
+    .js-menu{
+        margin: 2em 1.1em 0em 2.5em;
     }
 
     .logo{
@@ -534,15 +533,28 @@ h4{
         margin: 8em 2em 0em 3.1em
     }
 
+    .loop-top h2{
+        margin: auto;
+    }
+
     .content-bottom{
         margin: 4em 2em 0 3.1em;
     }
+
 }
 
 @media screen and (max-width:420px){
     .loop-header{
         width: 84%;
         margin: 5em 2em 5em 2em;
+    }
+
+    .loop-nav ul li.nav-items{
+        width: 100%;
+        display: none;
+        text-align: left;
+        font-size: 1.2rem;
+        margin: 0 1.5em;
     }
 
     .loop-nav a.icon{
@@ -558,7 +570,8 @@ h4{
     }
 
     .content-mid{
-        margin: 8em 2em 0em 2.1em
+        margin: 8em 2em 0em 2.1em;
+        height: 35rem;
     }
 
     .content-bottom{
@@ -566,19 +579,24 @@ h4{
     }
 
     .footer{
-        padding: 1em 2em 0em 2.1em;
+        padding: 1em 2em 1em 2.1em;
     }
 
+    .icons{
+        margin: auto;
+    }
+
+
     .loop-right p{
-        width: 98%;
+        width: 100%;
         margin-left: 0;
         text-align: center;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     .loop-right h1{
         text-align: center;
-        width: 19rem;
+        width: 22rem;
     }
 
     .loop-grid{
@@ -587,8 +605,8 @@ h4{
 
     .move{
         left: 15px;
-        width: 40%;
-        bottom: 0px;
+        width: 30%;
+        bottom: 10px;
         font-size: 1.2rem;
     }
 
@@ -611,5 +629,10 @@ h4{
 
     .loop-header h1{
         font-size: 2.7em;
+    }
+
+    .loop-right h1{
+        text-align: center;
+        width: 19rem;
     }
 }

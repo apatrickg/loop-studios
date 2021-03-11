@@ -1,19 +1,27 @@
-const icon = document.querySelector('.icon');
+const navItems = document.querySelectorAll('.nav-items');
+const lNav = document.getElementById('l-Nav');
+const openBtn = document.getElementById('open-btn');
+const menu = document.getElementById('menu');
 
-let loopNav = document.getElementById('l-Nav');
 
-// Show links and animate menu bars
-function showLinks(){
-    if (loopNav.className === "loop-nav"){
-        loopNav.className += " responsive";
-        document.body.classList.add('fixed');
+function animateMenu(){
+    // Interchange open and close icons
+    if (menu.className === 'fas fa-bars'){
+        menu.setAttribute('class', 'fas fa-times');
     } else{
-        loopNav.className = 'loop-nav';
-        document.body.classList.remove('fixed');
+        menu.setAttribute('class','fas fa-bars' );
     }
 
-    icon.classList.toggle('change');
+    // Toggle background
+    lNav.classList.toggle('change');
+
+    // Body toggle
+    document.body.classList.toggle('fixed');
+    
+    // Toggle navigation items
+    navItems.forEach((item) => {
+        item.classList.toggle('show');
+    })
 }
 
-// Event Listener
-icon.addEventListener('click', showLinks);
+openBtn.addEventListener('click', animateMenu);
